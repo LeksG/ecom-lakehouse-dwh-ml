@@ -1,0 +1,7 @@
+digraph G { rankdir=TB; fontname="Liberation Sans"; node [fontname="Liberation Sans", fontsize=11, shape=box, style="rounded,filled", fillcolor="#eef2f8", color="#1f3b73"]; edge [fontname="Liberation Sans", fontsize=9, color="#555555"]; nodesep=0.2; ranksep=0.35;
+ g [label="Gold DWH\n(dw.*, mart.*)", fillcolor="#d6e0f0"];
+ f1 [label="feature_store.daily_sales\nлаги 1-21, ковзні середні,\nкалендар, свята"]; f2 [label="feature_store.customer_rfm\nRecency, Frequency, Monetary,\nсервісні ознаки"]; f3 [label="feature_store.order_service\nдоставка, затримка, вантаж,\nоплата, категорія, штат"]; f4 [label="Історія покупок\nпокупець x категорія"];
+ m1 [label="Регресія: прогноз виручки\nRandomForest / Ridge / HGB", fillcolor="#dcefdc"]; m2 [label="Кластеризація: сегменти\nKMeans (k за силуетом)", fillcolor="#dcefdc"]; m3 [label="Класифікація: ризик\nнезадоволеності (HGB / RF / LR)", fillcolor="#dcefdc"]; m4 [label="Рекомендації категорій\nitem-based P(j|i) + популярність", fillcolor="#dcefdc"];
+ r [label="MLflow\nTracking +\nRegistry", fillcolor="#fff4d6"]; o [label="ml.* (прогнози,\nсегменти, ризики,\nрекомендації)", fillcolor="#d6e0f0"];
+ g->f1->m1->r; g->f2->m2->r; g->f3->m3->r; g->f4->m4->r; r->o [label="@champion"];
+}

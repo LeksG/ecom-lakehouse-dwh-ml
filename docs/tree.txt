@@ -1,0 +1,34 @@
+ecom/
+|-- config.py                      конфігурація шляхів, DWH і MLflow
+|-- run_pipeline.py                локальний запуск усього пайплайна
+|-- requirements.txt               залежності Python
+|-- docker-compose.yml             PostgreSQL + MLflow Tracking Server + Airflow
+|-- data/raw/                      CSV-вивантаження джерела (Olist, 8 файлів)
+|-- lake/
+|   |-- bronze/                    8 Delta-таблиць (сирі дані + метадані партії)
+|   `-- silver/                    7 Delta-таблиць (очищені дані)
+|-- etl/
+|   |-- extract.py                 Extract: CSV -> Bronze
+|   |-- transform.py               Transform: Bronze -> Silver, журнал очищення
+|   |-- quality.py                 Data Quality Gate (23 очікування)
+|   `-- load_dwh.py                Load: Silver -> Gold (PostgreSQL, «зірка»)
+|-- sql/
+|   |-- ddl_star_schema.sql        схеми dw, mart, feature_store, ml
+|   `-- marts.sql                  дата-марти звіту з продажів
+|-- ml/
+|   |-- features.py                Feature Engineering, feature_store
+|   |-- train_sales_forecast.py    регресія: прогноз виручки
+|   |-- train_customer_models.py   сегментація KMeans + класифікація ризику
+|   |-- recommender.py             рекомендації категорій
+|   |-- mlflow_utils.py            трекінг і реєстр моделей
+|   `-- inference.py               batch inference -> схема ml
+|-- dags/
+|   `-- ecommerce_pipeline_dag.py  DAG Apache Airflow
+|-- reports/
+|   |-- sales_report.py            звіт з продажів (Excel + графіки)
+|   |-- sales_report.xlsx
+|   |-- dq_report.json             звіт якості даних
+|   |-- metrics_*.csv / *.json     метрики моделей
+|   `-- figures/                   графіки
+|-- mlflow.db, mlruns/             метадані та артефакти MLflow
+`-- docs/                          схеми та пояснювальна записка

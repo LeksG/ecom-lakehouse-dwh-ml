@@ -1,0 +1,13 @@
+digraph G { rankdir=TB; fontname="Liberation Sans"; node [fontname="Liberation Sans", fontsize=11, shape=box, style="rounded,filled", fillcolor="#eef2f8", color="#1f3b73"]; edge [fontname="Liberation Sans", fontsize=9, color="#555555"];
+ oltp [label="Платформа\nелектронної комерції\n(OLTP)", shape=box, style=filled, fillcolor="#ffffff"];
+ sys [label="0\nІнформаційно-аналітична\nсистема продажів\n(Lakehouse + DWH + ML)", shape=circle, fillcolor="#d6e0f0", width=2.2, fixedsize=true];
+ an [label="Аналітик /\nменеджер продажів", style=filled, fillcolor="#ffffff"];
+ mk [label="Маркетинг /\nCRM-система", style=filled, fillcolor="#ffffff"];
+ ds [label="Data Engineer /\nData Scientist", style=filled, fillcolor="#ffffff"];
+ oltp->sys [label="замовлення, позиції, платежі,\nпокупці, товари, продавці, відгуки"];
+ sys->an [label="звіт з продажів, KPI,\nпрогноз виручки"];
+ an->sys [label="параметри звіту"];
+ sys->mk [label="сегменти покупців,\nризик незадоволеності,\nрекомендації"];
+ ds->sys [label="конфігурація пайплайна,\nпараметри моделей"];
+ sys->ds [label="звіт якості даних,\nметрики моделей"];
+}

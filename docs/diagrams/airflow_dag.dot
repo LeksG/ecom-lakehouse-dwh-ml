@@ -1,0 +1,5 @@
+digraph G { rankdir=TB; fontname="Liberation Sans"; node [fontname="Liberation Sans", fontsize=10, shape=box, style="filled", fillcolor="#e8f5e9", color="#2e7d32"]; edge [color="#555555"]; nodesep=0.15; ranksep=0.3;
+ a [label="bronze_ingest"]; b [label="silver_transform"]; c [label="data_quality_gate"]; d [label="gold_load_dwh"]; e [label="build_feature_store"]; r [label="sales_report"];
+ f [label="train_sales_forecast"]; g [label="train_customer_segmentation"]; h [label="train_customer_dissatisfaction"]; i [label="train_recommender"]; j [label="batch_inference"];
+ a->b->c->d->e; d->r; e->f; e->g; e->h; e->i; f->j; g->j; h->j; i->j;
+}

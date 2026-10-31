@@ -1,0 +1,5 @@
+mlflow==3.17.2
+pandas==2.1.4
+psutil==6.0.0
+scikit-learn==1.5.1
+skops==0.16.0

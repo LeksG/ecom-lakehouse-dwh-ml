@@ -1,0 +1,13 @@
+digraph G { rankdir=TB; fontname="Liberation Sans"; node [fontname="Liberation Sans", fontsize=11, shape=box, style="rounded,filled", fillcolor="#eef2f8", color="#1f3b73"]; edge [fontname="Liberation Sans", fontsize=9, color="#555555"]; nodesep=0.3; ranksep=0.35; compound=true;
+ subgraph cluster_src { label="Джерела"; style=rounded; color="#999999"; csv [label="CSV-вивантаження\nOLTP (8 таблиць)"]; }
+ subgraph cluster_lake { label="Озеро даних (Delta Lake)"; style=rounded; color="#d9822b";
+   br [label="Bronze\n8 Delta-таблиць", fillcolor="#e9d3b8"]; sv [label="Silver\n7 Delta-таблиць", fillcolor="#e0e0e0"]; dq [label="Data Quality\nGate (23 перевірки)", shape=diamond, fillcolor="#fff4d6"]; }
+ subgraph cluster_dwh { label="Gold: сховище PostgreSQL"; style=rounded; color="#1f3b73";
+   dw [label="dw.*\nсхема «зірка»\n(5 вимірів + факт)", fillcolor="#d6e0f0"]; mart [label="mart.*\nдата-марти", fillcolor="#d6e0f0"]; fs [label="feature_store.*\nсховище ознак", fillcolor="#d6e0f0"]; mlo [label="ml.*\nрезультати\nінференсу", fillcolor="#d6e0f0"]; }
+ subgraph cluster_ml { label="ML-підсистема"; style=rounded; color="#2e7d32";
+   tr [label="Навчання моделей\n(scikit-learn)", fillcolor="#dcefdc"]; mlf [label="MLflow Tracking\n+ Model Registry\n(@champion)", fillcolor="#dcefdc"]; inf [label="Batch inference", fillcolor="#dcefdc"]; }
+ bi [label="Звіт з продажів\n(Excel / BI)", fillcolor="#ffffff"];
+ af [label="Apache Airflow\n(оркестрація, щодня 03:00)", shape=box, style="rounded,dashed", fillcolor="#ffffff"];
+ csv->br [label="Extract"]; br->sv [label="Transform"]; sv->dq; dq->dw [label="Load"]; dw->mart; dw->fs; mart->bi; fs->tr; tr->mlf; mlf->inf; fs->inf; inf->mlo;
+ af->br [style=dashed, arrowhead=none]; af->tr [style=dashed, arrowhead=none];
+}

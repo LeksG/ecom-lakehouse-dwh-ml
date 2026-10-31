@@ -1,0 +1,12 @@
+digraph G { rankdir=TB; fontname="Liberation Sans"; node [fontname="Liberation Sans", fontsize=11, shape=box, style="rounded,filled", fillcolor="#eef2f8", color="#1f3b73"]; edge [fontname="Liberation Sans", fontsize=9, color="#555555"]; compound=true; newrank=true; nodesep=0.25; ranksep=0.35;
+subgraph cluster_dwh { label="a) Data Warehouse (1990-ті)"; fontsize=12; style=rounded; color="#1f3b73";
+ s1 [label="OLTP-бази,\nERP/CRM"]; e1 [label="ETL\n(schema-on-write)"]; w1 [label="Сховище даних\n(реляційна СКБД,\nсхема «зірка»)", fillcolor="#d6e0f0"]; b1 [label="BI / звіти\n(SQL)"];
+ s1->e1->w1->b1; }
+subgraph cluster_dl { label="б) Data Lake + DWH (2010-ті)"; fontsize=12; style=rounded; color="#d9822b";
+ s2 [label="Структуровані +\nнапівструктуровані +\nнеструктуровані дані"]; l2 [label="Озеро даних\n(HDFS / S3, файли)\nschema-on-read", fillcolor="#fbe7d3"]; e2 [label="ETL у DWH"]; w2 [label="DWH"]; b2 [label="BI"]; m2 [label="ML / Data Science"];
+ s2->l2; l2->e2->w2->b2; l2->m2; }
+subgraph cluster_lh { label="в) Data Lakehouse (2020-ті)"; fontsize=12; style=rounded; color="#2e7d32";
+ s3 [label="Будь-які джерела\n(batch / streaming)"]; l3 [label="Об'єктне сховище\n+ відкритий формат\n(Parquet)", fillcolor="#dcefdc"]; t3 [label="Шар метаданих і\nтранзакцій ACID\n(Delta / Iceberg / Hudi)", fillcolor="#dcefdc"]; b3 [label="BI / SQL"]; m3 [label="ML / AI"];
+ s3->l3->t3; t3->b3; t3->m3; }
+{rank=same; s1; s2; s3;}
+}

@@ -1,0 +1,8 @@
+digraph G { rankdir=LR; ranksep=0.25; fontname="Liberation Sans"; node [fontname="Liberation Sans", fontsize=15, shape=box, style="rounded,filled", fillcolor="#eef2f8", color="#1f3b73"]; edge [fontname="Liberation Sans", fontsize=13, color="#555555"]; nodesep=0.3;
+ src [label="Джерела\n(CSV, API, БД)", fillcolor="#ffffff"];
+ br [label="BRONZE\nсирі дані «як є»\n+ метадані інгестії", fillcolor="#e9d3b8"];
+ sv [label="SILVER\nочищені, типізовані,\nдедупліковані дані", fillcolor="#e0e0e0"];
+ gd [label="GOLD\nагреговані дані,\nвітрини, ознаки ML", fillcolor="#f6e3a1"];
+ c [label="Споживачі:\nBI, звіти, ML-моделі", fillcolor="#ffffff"];
+ src->br [label="інгестія"]; br->sv [label="очищення\nнормалізація"]; sv->gd [label="моделювання\nагрегація"]; gd->c;
+}

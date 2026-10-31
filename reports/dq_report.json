@@ -1,0 +1,168 @@
+{
+  "total": 23,
+  "passed": 23,
+  "critical_failed": 0,
+  "results": [
+    {
+      "table": "orders",
+      "expectation": "expect_compound_columns_to_be_unique['order_id']",
+      "success": true,
+      "observed": 0,
+      "critical": true
+    },
+    {
+      "table": "orders",
+      "expectation": "expect_column_values_to_not_be_null(customer_id, mostly=1.0)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "orders",
+      "expectation": "expect_column_values_to_not_be_null(order_purchase_timestamp, mostly=1.0)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "orders",
+      "expectation": "expect_column_values_to_be_between(order_purchase_timestamp, 2016-01-01 00:00:00, 2018-12-31 00:00:00)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "orders",
+      "expectation": "expect_column_values_to_be_in_set(order_status)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "orders",
+      "expectation": "expect_foreign_key(customer_id -> customers.customer_id)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "orders",
+      "expectation": "expect_column_values_to_not_be_null(order_delivered_customer_date, mostly=0.95)",
+      "success": true,
+      "observed": 0.9702,
+      "critical": false
+    },
+    {
+      "table": "order_items",
+      "expectation": "expect_compound_columns_to_be_unique['order_id', 'order_item_id']",
+      "success": true,
+      "observed": 0,
+      "critical": true
+    },
+    {
+      "table": "order_items",
+      "expectation": "expect_column_values_to_be_between(price, 0.01, 10000)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "order_items",
+      "expectation": "expect_column_values_to_be_between(freight_value, 0, 1000)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "order_items",
+      "expectation": "expect_foreign_key(order_id -> orders.order_id)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "order_items",
+      "expectation": "expect_foreign_key(product_id -> products.product_id)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "order_items",
+      "expectation": "expect_foreign_key(seller_id -> sellers.seller_id)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "customers",
+      "expectation": "expect_compound_columns_to_be_unique['customer_id']",
+      "success": true,
+      "observed": 0,
+      "critical": true
+    },
+    {
+      "table": "customers",
+      "expectation": "expect_column_values_to_not_be_null(customer_unique_id, mostly=1.0)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "customers",
+      "expectation": "expect_column_values_to_be_in_set(customer_state)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "products",
+      "expectation": "expect_compound_columns_to_be_unique['product_id']",
+      "success": true,
+      "observed": 0,
+      "critical": true
+    },
+    {
+      "table": "products",
+      "expectation": "expect_column_values_to_not_be_null(product_category_name_english, mostly=1.0)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "products",
+      "expectation": "expect_column_values_to_be_between(product_weight_g, 0, 50000)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "payments",
+      "expectation": "expect_column_values_to_be_between(payment_value, 0, 20000)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "payments",
+      "expectation": "expect_column_values_to_be_in_set(payment_type)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    },
+    {
+      "table": "reviews",
+      "expectation": "expect_compound_columns_to_be_unique['order_id']",
+      "success": true,
+      "observed": 0,
+      "critical": true
+    },
+    {
+      "table": "reviews",
+      "expectation": "expect_column_values_to_be_between(review_score, 1, 5)",
+      "success": true,
+      "observed": 1.0,
+      "critical": true
+    }
+  ]
+}

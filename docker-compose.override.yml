@@ -1,0 +1,19 @@
+# Локальні налаштування запуску (доповнюють docker-compose.yml)
+services:
+  postgres:
+    ports: !override ["5433:5432"]   # 5432 на хості зайнятий локальною службою PostgreSQL
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v3.17.2   # код використовує API MLflow 3 (log_model(name=...))
+    # артефакти віддаються через сервер (mlflow-artifacts:/), щоб їх бачив контейнер Airflow
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow/mlflow.db --artifacts-destination /mlflow/mlruns --allowed-hosts "mlflow:5000,localhost:5000,127.0.0.1:5000"
+
+  airflow:
+    environment:
+      _PIP_ADDITIONAL_REQUIREMENTS: deltalake==0.18.2 mlflow-skinny==3.17.2 scikit-learn==1.9.1 openpyxl==3.1.5 matplotlib==3.8.4 skops==0.16.0
+    volumes:
+      # Delta Lake потребує атомарного rename, якого немає в bind mount Windows -> окремий том
+      - lake:/opt/airflow/ecom/lake
+
+volumes:
+  lake:

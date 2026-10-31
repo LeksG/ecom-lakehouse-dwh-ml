@@ -1,0 +1,10 @@
+# Оточення та кеш
+.venv/
+__pycache__/
+*.pyc
+
+# Текст пояснювальної записки та скрипти її збірки
+docs/content.py
+docs/build_docx.py
+docs/toc*.json
+docs/toc_pages.py

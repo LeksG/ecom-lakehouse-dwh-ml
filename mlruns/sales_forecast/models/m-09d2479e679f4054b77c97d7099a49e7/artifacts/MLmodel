@@ -1,0 +1,52 @@
+artifact_path: file:///opt/airflow/ecom/mlruns/sales_forecast/models/m-09d2479e679f4054b77c97d7099a49e7/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.11.9
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types:
+    - sklearn.tree._tree.Tree
+    - sklearn._loss.link.Interval
+    - sklearn._loss.link.IdentityLink
+    - sklearn._loss.link.LogitLink
+    - sklearn._loss.loss.HalfSquaredError
+    - sklearn._loss.loss.HalfBinomialLoss
+    - sklearn.ensemble._hist_gradient_boosting.binning._BinMapper
+    - sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor
+    - numpy.dtype
+is_signature_from_type_hint: false
+mlflow_version: 3.17.2
+model_id: m-09d2479e679f4054b77c97d7099a49e7
+model_size_bytes: 13773906
+model_uuid: m-09d2479e679f4054b77c97d7099a49e7
+prompts: null
+run_id: a91ceea2001f497c9d38ec5d21ee6014
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "lag_1", "required": true}, {"type": "double",
+    "name": "lag_2", "required": true}, {"type": "double", "name": "lag_3", "required":
+    true}, {"type": "double", "name": "lag_7", "required": true}, {"type": "double",
+    "name": "lag_14", "required": true}, {"type": "double", "name": "lag_21", "required":
+    true}, {"type": "double", "name": "roll_mean_7", "required": true}, {"type": "double",
+    "name": "roll_mean_28", "required": true}, {"type": "double", "name": "roll_std_7",
+    "required": true}, {"type": "long", "name": "dow", "required": true}, {"type":
+    "long", "name": "is_weekend", "required": true}, {"type": "long", "name": "day_of_month",
+    "required": true}, {"type": "long", "name": "month", "required": true}, {"type":
+    "long", "name": "is_holiday", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-10-27 17:02:34.795737'

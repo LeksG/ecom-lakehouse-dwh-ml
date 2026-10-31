@@ -1,0 +1,13 @@
+{
+  "bronze_ingest": 1.1,
+  "silver_transform": 1.2,
+  "data_quality_gate": 1.7,
+  "gold_load_dwh": 7.2,
+  "sales_report": 1.2,
+  "build_feature_store": 10.8,
+  "train_sales_forecast": 20.5,
+  "train_customer_segmentation": 14.9,
+  "train_customer_dissatisfaction": 20.3,
+  "train_recommender": 20.3,
+  "batch_inference": 7.1
+}

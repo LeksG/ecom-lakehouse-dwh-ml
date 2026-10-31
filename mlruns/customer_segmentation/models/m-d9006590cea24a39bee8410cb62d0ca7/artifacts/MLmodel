@@ -1,0 +1,47 @@
+artifact_path: file:///opt/airflow/ecom/mlruns/customer_segmentation/models/m-d9006590cea24a39bee8410cb62d0ca7/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.11.9
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types:
+    - sklearn.tree._tree.Tree
+    - sklearn._loss.link.Interval
+    - sklearn._loss.link.IdentityLink
+    - sklearn._loss.link.LogitLink
+    - sklearn._loss.loss.HalfSquaredError
+    - sklearn._loss.loss.HalfBinomialLoss
+    - sklearn.ensemble._hist_gradient_boosting.binning._BinMapper
+    - sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor
+    - numpy.dtype
+is_signature_from_type_hint: false
+mlflow_version: 3.17.2
+model_id: m-d9006590cea24a39bee8410cb62d0ca7
+model_size_bytes: 407849
+model_uuid: m-d9006590cea24a39bee8410cb62d0ca7
+prompts: null
+run_id: 5819fb8db47c4dec8730643328572c16
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "long", "name": "recency_days", "required": true}, {"type": "double",
+    "name": "frequency", "required": true}, {"type": "double", "name": "monetary",
+    "required": true}, {"type": "double", "name": "avg_review", "required": true},
+    {"type": "double", "name": "avg_delivery_days", "required": true}, {"type": "double",
+    "name": "late_share", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int32", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-10-27 17:03:00.820144'

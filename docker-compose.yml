@@ -1,0 +1,32 @@
+# Інфраструктура проєкту: DWH (PostgreSQL), MLflow Tracking Server, Apache Airflow
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ecom_dwh
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.14.1
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow/mlflow.db --default-artifact-root /mlflow/mlruns
+    ports: ["5000:5000"]
+    volumes: ["./mlflow:/mlflow"]
+
+  airflow:
+    image: apache/airflow:2.9.3-python3.11
+    command: standalone
+    environment:
+      ECOM_DWH_DSN: postgresql+psycopg2://postgres:postgres@postgres:5432/ecom_dwh
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      _PIP_ADDITIONAL_REQUIREMENTS: deltalake mlflow scikit-learn openpyxl
+    ports: ["8080:8080"]
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./:/opt/airflow/ecom
+    depends_on: [postgres, mlflow]
+
+volumes:
+  pgdata:
